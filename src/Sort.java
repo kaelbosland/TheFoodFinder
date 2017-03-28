@@ -1,24 +1,27 @@
-public class Sort{
 
-	private static void sort(Comparable[] list, int lo, int hi){
+public class Sort{
+	
+	//QuickSort 
+	
+	private static void sort(Comparable[] prodID, int lo, int hi){
 		if (hi <= lo) 
 			return;
-		int j = partition(list, lo, hi);  // Separate into 2 parts 
-		sort(list, lo, j-1);              // Sort left part list[lo .. j-1].
-		sort(list, j+1, hi);              // Sort right part list[j+1 .. hi].
+		int j = partition(prodID, lo, hi);  // Separate into 2 parts 
+		sort(prodID, lo, j-1);              // Sort left part prodID[lo .. j-1].
+		sort(prodID, j+1, hi);              // Sort right part prodID[j+1 .. hi].
 	}
 	
-	  private static int partition(Comparable[] a, int lo, int hi) {  // Separate into a[lo..i-1], a[i], a[i+1..hi].
+	  private static int partition(Comparable[] prodID, int lo, int hi) {  // Separate into prodID[lo..i-1], prodID[i], prodID[i+1..hi].
 	  
 	     int i = lo, j = hi+1;            // left and right scan indices
-	     Comparable v = a[lo];            // separating item
+	     Comparable v = prodID[lo];            // separating item
 	     while (true){ 
-	        while (less(a[++i], v)) if (i == hi) break;
-	        while (less(v, a[--j])) if (j == lo) break;
+	        while (less(prodID[++i], v)) if (i == hi) break;
+	        while (less(v, prodID[--j])) if (j == lo) break;
 	        if (i >= j) break;
-	        exch(a, i, j);
+	        exch(prodID, i, j);
 	     }
-	     exch(a, lo, j);
+	     exch(prodID, lo, j);
 	     return j;
 	     
 	  }
@@ -26,9 +29,10 @@ public class Sort{
 	        return v.compareTo(w) < 0;
 	    }
 	  
-	  private static void exch(Object[] a, int i, int j) {
-	        Object swap = a[i];
-	        a[i] = a[j];
-	        a[j] = swap;
+	  private static void exch(Object[] prodID, int i, int j) {
+	        Object swap = prodID[i];
+	        prodID[i] = prodID[j];
+	        prodID[j] = swap;
 	    }
 }
+
