@@ -10,21 +10,27 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 public class JsonParser {
-
-	public static void main(String [] args) throws org.json.simple.parser.ParseException {
-	    ArrayList<JSONObject> json=new ArrayList<JSONObject>();
-	   // HashSet productId = new HashSet();
-	    ArrayList prodId= new ArrayList();
-	    ArrayList overall= new ArrayList();
-	    ArrayList reviewText= new ArrayList();
-
-	    JSONObject obj;
-	    // The name of the file to open.
-	    String fileName = "Data//Grocery_and_Gourmet_Food_5.json";
-
+    ArrayList<JSONObject> json=new ArrayList<JSONObject>();
+   // HashSet productId = new HashSet();
+    ArrayList prodId= new ArrayList();
+    ArrayList overall= new ArrayList();
+    ArrayList reviewText= new ArrayList();
+    JSONObject obj;
+    // The name of the file to open.
+    String fileName = "Data//Grocery_and_Gourmet_Food_5.json";
+    
+    public ArrayList getProdId() { 
+    	return this.prodId;
+    }
+    public ArrayList getOverall() { 
+    	return this.overall;
+    }
+    public ArrayList getReviewText() { 
+    	return this.reviewText;
+    }
+	public void read() throws org.json.simple.parser.ParseException { 
 	    // This will reference one line at a time
 	    String line = null;
-
 	    try {
 	        // FileReader reads text files in the default encoding.
 	        FileReader fileReader = new FileReader(fileName);
@@ -36,15 +42,11 @@ public class JsonParser {
 	            obj = (JSONObject) new JSONParser().parse(line);
 	            json.add(obj);
 	            //Adds each object in JSON 
-	            //if (!prodId.contains((String)obj.get("asin")))
-        		prodId.add((String)obj.get("asin"));
-        		overall.add((Double)obj.get("overall"));
-        		reviewText.add((String)obj.get("reviewText"));
-
-//	            System.out.println("asin " + (String)obj.get("asin"));
+        		this.prodId.add((String)this.obj.get("asin"));
+        		this.overall.add((Double)this.obj.get("overall"));
+        		this.reviewText.add((String)this.obj.get("reviewText"));
 	        }
-	        System.out.println(prodId.size());
-	        // Always close files.
+	        // close files.
 	        bufferedReader.close();         
 	    }
 	    catch(FileNotFoundException ex) {
@@ -55,7 +57,7 @@ public class JsonParser {
 	        // Or we could just do this: 
 	        // ex.printStackTrace();
 	    } catch (ParseException e) {
-	        // TODO Auto-generated catch block
+	        // Auto-generated catch block
 	        e.printStackTrace();
 	    }
 	}
